@@ -23,7 +23,7 @@ export class MedicoService {
     async findById(cedula: number): Promise<MedicoEntity> {
         const medico = await this.medicoRepository.findOneBy({cedula});
         if(!medico){
-            throw new NotFoundException(new MessageDto('Medico no Existe'))
+            throw new NotFoundException(new MessageDto('El Medico no Existe'))
         }
         return medico;
     }
@@ -43,7 +43,7 @@ export class MedicoService {
     async update(cedula: number, dto: MedicoDto): Promise<any>{
         const medico = await this.findById(cedula);
         if(!medico)
-        throw new BadRequestException(new MessageDto('Medico no existente'));
+        throw new BadRequestException(new MessageDto('El Medico no existente'));
         dto.nombre? medico.nombre = dto.nombre : medico.nombre = medico.nombre;
         dto.celular? medico.celular = dto.celular : medico.celular = medico.celular;
         dto.especialidad? medico.especialidad = dto.especialidad : medico.especialidad = medico.especialidad;
@@ -54,6 +54,6 @@ export class MedicoService {
     async delete(cedula: number): Promise<any> {
         const medico = await this.findById(cedula);
         await this.medicoRepository.delete(medico);
-        return new MessageDto ('Medico Eliminado');
+        return new MessageDto ('Medico fue Eliminado');
     }
 }

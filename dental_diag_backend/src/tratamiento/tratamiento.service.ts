@@ -55,6 +55,6 @@ export class TratamientoService {
         async delete(id: number): Promise<any> {
             const tratamiento = await this.findById(id);
             await this.tratamientoRepository.delete(tratamiento);
-            return new MessageDto ('Tratamiento eliminado');
+            return new MessageDto ('Tratamiento se Elimino');
         }
 }

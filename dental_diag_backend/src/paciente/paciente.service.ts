@@ -56,6 +56,6 @@ export class PacienteService {
     async delete(cedula: number): Promise<any> {
         const paciente = await this.findById(cedula);
         await this.pacienteRepository.delete(paciente);
-        return new MessageDto ('Paciente Eliminado');
+        return new MessageDto ('Paciente esta Eliminado');
     }
 }
