@@ -9,25 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TratamientoEntity = void 0;
-const cuenta_entity_1 = require("../cuenta/cuenta.entity");
-const typeorm_1 = require("typeorm");
-let TratamientoEntity = class TratamientoEntity {
-};
+exports.ConsultaDto = void 0;
+const class_validator_1 = require("class-validator");
+const is_not_blank_decorator_1 = require("../../decorators/is-not-blank.decorator");
+class ConsultaDto {
+}
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", Number)
-], TratamientoEntity.prototype, "id", void 0);
+    (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Date)
+], ConsultaDto.prototype, "fecha", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 50, nullable: false, unique: true }),
+    (0, is_not_blank_decorator_1.IsNotBlank)({ message: 'El Motivo esta vacio' }),
     __metadata("design:type", String)
-], TratamientoEntity.prototype, "nombre", void 0);
+], ConsultaDto.prototype, "motivo", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => cuenta_entity_1.CuentaEntity, (cuenta) => cuenta.tratamiento),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Array)
-], TratamientoEntity.prototype, "cuentas", void 0);
-TratamientoEntity = __decorate([
-    (0, typeorm_1.Entity)({ name: 'tratamientos' })
-], TratamientoEntity);
-exports.TratamientoEntity = TratamientoEntity;
-//# sourceMappingURL=tratamiento.entity.js.map
+], ConsultaDto.prototype, "medico", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Array)
+], ConsultaDto.prototype, "paciente", void 0);
+exports.ConsultaDto = ConsultaDto;
+//# sourceMappingURL=consulta.dto.js.map

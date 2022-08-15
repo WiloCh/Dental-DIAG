@@ -38,6 +38,7 @@ AppModule = __decorate([
                     database: configService.get(constants_1.DB_DATABASE),
                     entities: [__dirname + '/**/*.entity{.ts,.js}'],
                     synchronize: true,
+                    autoLoadEntities: true,
                 }),
                 inject: [config_1.ConfigService],
             }),

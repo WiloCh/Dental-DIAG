@@ -9,25 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TratamientoEntity = void 0;
-const cuenta_entity_1 = require("../cuenta/cuenta.entity");
-const typeorm_1 = require("typeorm");
-let TratamientoEntity = class TratamientoEntity {
-};
+exports.CuentaDto = void 0;
+const class_validator_1 = require("class-validator");
+const is_not_blank_decorator_1 = require("../../decorators/is-not-blank.decorator");
+class CuentaDto {
+}
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", Number)
-], TratamientoEntity.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 50, nullable: false, unique: true }),
+    (0, is_not_blank_decorator_1.IsNotBlank)({ message: 'La Descripcion esta vacio' }),
     __metadata("design:type", String)
-], TratamientoEntity.prototype, "nombre", void 0);
+], CuentaDto.prototype, "descripcion", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => cuenta_entity_1.CuentaEntity, (cuenta) => cuenta.tratamiento),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Array)
-], TratamientoEntity.prototype, "cuentas", void 0);
-TratamientoEntity = __decorate([
-    (0, typeorm_1.Entity)({ name: 'tratamientos' })
-], TratamientoEntity);
-exports.TratamientoEntity = TratamientoEntity;
-//# sourceMappingURL=tratamiento.entity.js.map
+], CuentaDto.prototype, "paciente", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Array)
+], CuentaDto.prototype, "tratamiento", void 0);
+exports.CuentaDto = CuentaDto;
+//# sourceMappingURL=cuenta.dto.js.map

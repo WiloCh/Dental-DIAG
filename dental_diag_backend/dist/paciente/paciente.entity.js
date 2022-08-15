@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PacienteEntity = void 0;
+const consulta_entity_1 = require("../consulta/consulta.entity");
 const typeorm_1 = require("typeorm");
 let PacienteEntity = class PacienteEntity {
 };
@@ -37,6 +38,14 @@ __decorate([
     (0, typeorm_1.Column)({ type: "varchar", length: 200, nullable: false }),
     __metadata("design:type", String)
 ], PacienteEntity.prototype, "correo", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => consulta_entity_1.ConsultaEntity, (consulta) => consulta.paciente),
+    __metadata("design:type", Array)
+], PacienteEntity.prototype, "consultas", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => consulta_entity_1.ConsultaEntity, (cuenta) => cuenta.paciente),
+    __metadata("design:type", Array)
+], PacienteEntity.prototype, "cuentas", void 0);
 PacienteEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'pacientes' })
 ], PacienteEntity);

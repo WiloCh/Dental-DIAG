@@ -28,13 +28,7 @@ export class MedicoService {
         return medico;
     }
 
-    async findByNombre(nombre: string): Promise<MedicoEntity> {
-        const medico = await this.medicoRepository.findOneBy({nombre: nombre});
-        return medico;
-    }
-
     async create(dto: MedicoDto): Promise<any> {
-        const exists = await this.findByNombre(dto.nombre);
         const medico = this.medicoRepository.create(dto);
         await this.medicoRepository.save(medico);
         return new MessageDto('Medico Agregado');

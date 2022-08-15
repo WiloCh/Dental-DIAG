@@ -62,7 +62,7 @@ let TratamientoService = class TratamientoService {
     async delete(id) {
         const tratamiento = await this.findById(id);
         await this.tratamientoRepository.delete(tratamiento);
-        return new message_dto_1.MessageDto('Tratamiento eliminado');
+        return new message_dto_1.MessageDto('Tratamiento se Elimino');
     }
 };
 TratamientoService = __decorate([

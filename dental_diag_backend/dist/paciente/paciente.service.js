@@ -61,7 +61,7 @@ let PacienteService = class PacienteService {
     async delete(cedula) {
         const paciente = await this.findById(cedula);
         await this.pacienteRepository.delete(paciente);
-        return new message_dto_1.MessageDto('Paciente Eliminado');
+        return new message_dto_1.MessageDto('Paciente esta Eliminado');
     }
 };
 PacienteService = __decorate([
