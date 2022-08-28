@@ -1,0 +1,37 @@
+<div class="container">
+    <button class="btn btn-outline-primary" routerLink="/medico/nuevo"><i class="far fa-edit"></i>
+        Agregar Medico</button>
+</div>
+<br>
+<div class="container" *ngIf="!listaVacia">
+    <table class="table table-dark text-center">
+        <thead>
+            <tr>
+                <th scope="col">Cedula</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Borrar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let medico of medicos">
+                <td>{{medico.cedula}}</td>
+                <td>{{medico.nombre}}</td>
+                <td>{{medico.celular}}</td>
+                <td>{{medico.especialidad}}</td>
+                <td><button class="btn btn-outline-warning" routerLink="/medico/editar/{{medico.cedula}}"><i
+                            class="far fa-edit"></i> Editar</button></td>
+                <td><button class="btn btn-outline-danger" (click)="borrar(medico.cedula)"><i
+                            class="far fa-trash-alt"></i> Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container" *ngIf="listaVacia">
+    <div class="p-3 mb-2 bg-dark text-white text-center">
+        <h2>{{listaVacia}}</h2>
+    </div>
+</div>

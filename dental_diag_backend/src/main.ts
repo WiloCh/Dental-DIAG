@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 import { SERVE_PORT } from './config/constants';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   const configService = app.get(ConfigService);
   //server port
   const port = +configService.get<number>(SERVE_PORT) || 3000;
