@@ -6,9 +6,9 @@ export const environment = {
   production: false,
   medicoURL: 'http://localhost:8080/medico/',
   pacienteURL: 'http://localhost:8080/paciente/',
-  tratamiento: 'http://localhost:8080/tratamiento/',
-  cuenta: 'http://localhost:8080/cuenta/',
-  consulta: 'http://localhost:8080/consulta/'
+  tratamientoURL: 'http://localhost:8080/tratamiento/',
+  cuentaURL: 'http://localhost:8080/cuenta/',
+  consultaURL: 'http://localhost:8080/consulta/'
 };
 
 /*

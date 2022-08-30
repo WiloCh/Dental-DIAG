@@ -25,9 +25,9 @@
                 <td>{{paciente.sexo}}</td>
                 <td>{{paciente.celular}}</td>
                 <td>{{paciente.correo}}</td>
-                <td><button class="btn btn-outline-warning" routerLink="/paciente/editar/{{paciente.cedula}}"><i
+                <td><button class="btn btn-outline-warning" routerLink="/paciente/editar/{{paciente.id}}"><i
                             class="far fa-edit"></i> Editar</button></td>
-                <td><button class="btn btn-outline-danger" (click)="borrar(paciente.cedula)"><i
+                <td><button class="btn btn-outline-danger" (click)="borrar(paciente.id)"><i
                             class="far fa-trash-alt"></i> Eliminar</button></td>
             </tr>
         </tbody>

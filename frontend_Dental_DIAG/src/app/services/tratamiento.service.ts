@@ -9,7 +9,7 @@ import { Tratamiento } from '../models/tratamiento';
 })
 export class TratamientoService {
 
-  tratamientoURL = environment.tratamiento;
+  tratamientoURL = environment.tratamientoURL;
 
   constructor(private httpClient: HttpClient) { }
 

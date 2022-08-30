@@ -1,6 +1,6 @@
 export class Medico {
-    
-    cedula!: number;
+    id!: number;
+    cedula: number;
     nombre: string;
     celular: string;
     especialidad: string;

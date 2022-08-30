@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Medico } from '../models/medico';
 import { MedicoService } from '../services/medico.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-lista-medico',
   templateUrl: './lista-medico.component.html',
@@ -18,10 +20,10 @@ export class ListaMedicoComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.cargarProductos();
+    this.cargarMedicos();
   }
 
-  cargarProductos(): void {
+  cargarMedicos(): void {
     this.medicoService.lista().subscribe(
       data => {
         this.medicos = data;
@@ -33,8 +35,25 @@ export class ListaMedicoComponent implements OnInit {
     );
   }
 
-  borrar(cedula: number): void {
-    console.log('borrar');
+  borrar(id?: number): void {
+    Swal.fire({
+      title: '¿Esta seguros?',
+      text: "no hay vuelta atras!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, elimínalo.'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.medicoService.delete(id!).subscribe(res => this.cargarMedicos());
+        Swal.fire(
+          'Borrado',
+          'El Paciente ha sido borrado.',
+          'success'
+        )
+      }
+    })
   }
 
 }

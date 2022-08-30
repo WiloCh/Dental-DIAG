@@ -17,19 +17,19 @@ export class PacienteService {
     return this.httpClient.get<Paciente[]>(`${this.pacienteURL}`);
   }
 
-  public detail(cedula: number): Observable<Paciente> {
-    return this.httpClient.get<Paciente>(`${this.pacienteURL}${cedula}`);
+  public detail(id: number): Observable<Paciente> {
+    return this.httpClient.get<Paciente>(`${this.pacienteURL}${id}`);
   }
 
   public save(paciente: Paciente): Observable<any> {
     return this.httpClient.post<any>(`${this.pacienteURL}`, paciente);
   }
 
-  public update(cedula: number, paciente: Paciente): Observable<any> {
-    return this.httpClient.put<any>(`${this.pacienteURL}${cedula}`, paciente);
+  public update(id: number, paciente: Paciente): Observable<any> {
+    return this.httpClient.put<any>(`${this.pacienteURL}${id}`, paciente);
   }
 
-  public delete(cedula: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.pacienteURL}${cedula}`);
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.pacienteURL}${id}`);
   }
 }

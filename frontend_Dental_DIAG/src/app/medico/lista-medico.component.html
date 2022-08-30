@@ -21,9 +21,9 @@
                 <td>{{medico.nombre}}</td>
                 <td>{{medico.celular}}</td>
                 <td>{{medico.especialidad}}</td>
-                <td><button class="btn btn-outline-warning" routerLink="/medico/editar/{{medico.cedula}}"><i
+                <td><button class="btn btn-outline-warning" routerLink="/medico/editar/{{medico.id}}"><i
                             class="far fa-edit"></i> Editar</button></td>
-                <td><button class="btn btn-outline-danger" (click)="borrar(medico.cedula)"><i
+                <td><button class="btn btn-outline-danger" (click)="borrar(medico.id)"><i
                             class="far fa-trash-alt"></i> Eliminar</button></td>
             </tr>
         </tbody>

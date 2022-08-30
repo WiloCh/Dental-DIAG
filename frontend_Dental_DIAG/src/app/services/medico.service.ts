@@ -17,19 +17,19 @@ export class MedicoService {
     return this.httpClient.get<Medico[]>(`${this.medicoURL}`);
   }
 
-  public detail(cedula: number): Observable<Medico> {
-    return this.httpClient.get<Medico>(`${this.medicoURL}${cedula}`);
+  public detail(id: number): Observable<Medico> {
+    return this.httpClient.get<Medico>(`${this.medicoURL}${id}`);
   }
 
   public save(medico: Medico): Observable<any> {
     return this.httpClient.post<any>(`${this.medicoURL}`, medico);
   }
 
-  public update(cedula: number, medico: Medico): Observable<any> {
-    return this.httpClient.put<any>(`${this.medicoURL}${cedula}`, medico);
+  public update(id: number, medico: Medico): Observable<any> {
+    return this.httpClient.put<any>(`${this.medicoURL}${id}`, medico);
   }
 
-  public delete(cedula: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.medicoURL}${cedula}`);
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.medicoURL}${id}`);
   }
 }

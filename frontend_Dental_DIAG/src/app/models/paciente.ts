@@ -1,4 +1,5 @@
 export class Paciente {
+    id!: number;
     cedula: number;
     nombre: string;
     edad: number;

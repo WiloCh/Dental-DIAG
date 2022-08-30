@@ -21,8 +21,8 @@ export class EditarPacienteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const cedula = this.activatedRoute.snapshot.params['cedula'];
-    this.pacienteService.detail(cedula).subscribe(
+    const id = this.activatedRoute.snapshot.params['id'];
+    this.pacienteService.detail(id).subscribe(
       data => {
         this.paciente = data;
       },
@@ -36,8 +36,8 @@ export class EditarPacienteComponent implements OnInit {
   }
 
   onUpdate(): void {
-    const cedula = this.activatedRoute.snapshot.params['cedula'];
-    this.pacienteService.update(cedula, this.paciente).subscribe(
+    const id = this.activatedRoute.snapshot.params['id'];
+    this.pacienteService.update(id, this.paciente).subscribe(
       data => {
         this.toastr.success(data.message, 'OK', {
           timeOut: 3000, positionClass: 'toast-top-center'
