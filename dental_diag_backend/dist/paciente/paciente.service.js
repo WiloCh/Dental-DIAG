@@ -29,8 +29,8 @@ let PacienteService = class PacienteService {
         }
         return list;
     }
-    async findById(cedula) {
-        const paciente = await this.pacienteRepository.findOneBy({ cedula });
+    async findById(id) {
+        const paciente = await this.pacienteRepository.findOneBy({ id });
         if (!paciente) {
             throw new common_1.NotFoundException(new message_dto_1.MessageDto('El Paciente no Existe'));
         }
@@ -46,8 +46,8 @@ let PacienteService = class PacienteService {
         await this.pacienteRepository.save(paciente);
         return new message_dto_1.MessageDto('Paciente Agregado');
     }
-    async update(cedula, dto) {
-        const paciente = await this.findById(cedula);
+    async update(id, dto) {
+        const paciente = await this.findById(id);
         if (!paciente)
             throw new common_1.BadRequestException(new message_dto_1.MessageDto('El Paciente no Existe'));
         dto.nombre ? paciente.nombre = dto.nombre : paciente.nombre = paciente.nombre;
@@ -58,8 +58,8 @@ let PacienteService = class PacienteService {
         await this.pacienteRepository.save(paciente);
         return new message_dto_1.MessageDto('Datos del Paciente actualizados');
     }
-    async delete(cedula) {
-        const paciente = await this.findById(cedula);
+    async delete(id) {
+        const paciente = await this.findById(id);
         await this.pacienteRepository.delete(paciente);
         return new message_dto_1.MessageDto('Paciente esta Eliminado');
     }

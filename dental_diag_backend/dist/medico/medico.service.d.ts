@@ -5,8 +5,8 @@ export declare class MedicoService {
     private medicoRepository;
     constructor(medicoRepository: MedicoRepository);
     getAll(): Promise<MedicoEntity[]>;
-    findById(cedula: number): Promise<MedicoEntity>;
+    findById(id: number): Promise<MedicoEntity>;
     create(dto: MedicoDto): Promise<any>;
-    update(cedula: number, dto: MedicoDto): Promise<any>;
-    delete(cedula: number): Promise<any>;
+    update(id: number, dto: MedicoDto): Promise<any>;
+    delete(id: number): Promise<any>;
 }

@@ -16,7 +16,7 @@ export class ConsultaController {
     async getOne(@Param('id', ParseIntPipe) id: number) {
         return await this.consultaService.findById(id);
     }
-
+    
     @UsePipes(new ValidationPipe({whitelist: true}))
     @Post()
     async create(@Body() dto: ConsultaDto) {

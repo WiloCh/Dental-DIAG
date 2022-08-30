@@ -11,5 +11,5 @@ export class TratamientoEntity {
     nombre: string;
 
     @OneToMany(() => CuentaEntity, (cuenta) => cuenta.tratamiento)
-    cuentas: CuentaEntity[];
+    cuentas: CuentaEntity;
 }

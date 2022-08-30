@@ -25,13 +25,13 @@ __decorate([
 ], CuentaEntity.prototype, "descripcion", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => paciente_entity_1.PacienteEntity, (paciente) => paciente.cuentas),
-    (0, typeorm_1.JoinColumn)({ name: 'cedula_paciente' }),
-    __metadata("design:type", Array)
+    (0, typeorm_1.JoinColumn)({ name: 'id_paciente' }),
+    __metadata("design:type", paciente_entity_1.PacienteEntity)
 ], CuentaEntity.prototype, "paciente", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => tratamiento_entity_1.TratamientoEntity, (tratamiento) => tratamiento.cuentas),
     (0, typeorm_1.JoinColumn)({ name: 'id_tratamiento' }),
-    __metadata("design:type", Array)
+    __metadata("design:type", tratamiento_entity_1.TratamientoEntity)
 ], CuentaEntity.prototype, "tratamiento", void 0);
 CuentaEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'cuentas' })

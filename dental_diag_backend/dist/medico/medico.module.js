@@ -18,7 +18,8 @@ MedicoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([medico_entity_1.MedicoEntity])],
         providers: [medico_service_1.MedicoService],
-        controllers: [medico_controller_1.MedicoController]
+        controllers: [medico_controller_1.MedicoController],
+        exports: [medico_service_1.MedicoService]
     })
 ], MedicoModule);
 exports.MedicoModule = MedicoModule;

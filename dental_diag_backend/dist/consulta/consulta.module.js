@@ -13,11 +13,13 @@ const consulta_controller_1 = require("./consulta.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const consulta_entity_1 = require("./consulta.entity");
 const medico_entity_1 = require("../medico/medico.entity");
+const medico_module_1 = require("../medico/medico.module");
+const paciente_module_1 = require("../paciente/paciente.module");
 let ConsultaModule = class ConsultaModule {
 };
 ConsultaModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([consulta_entity_1.ConsultaEntity, medico_entity_1.MedicoEntity])],
+        imports: [medico_module_1.MedicoModule, paciente_module_1.PacienteModule, typeorm_1.TypeOrmModule.forFeature([consulta_entity_1.ConsultaEntity, medico_entity_1.MedicoEntity])],
         providers: [consulta_service_1.ConsultaService],
         controllers: [consulta_controller_1.ConsultaController]
     })

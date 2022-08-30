@@ -13,10 +13,10 @@ export class CuentaEntity {
     descripcion: string;
 
     @ManyToOne(() => PacienteEntity, (paciente) => paciente.cuentas)
-    @JoinColumn({name: 'cedula_paciente'})
-    paciente: PacienteEntity[];
+    @JoinColumn({name: 'id_paciente'})
+    paciente: PacienteEntity;
 
     @ManyToOne(() => TratamientoEntity, (tratamiento) => tratamiento.cuentas)
     @JoinColumn({name: 'id_tratamiento'})
-    tratamiento: TratamientoEntity[];
+    tratamiento: TratamientoEntity;
 }

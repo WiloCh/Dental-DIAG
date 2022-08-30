@@ -3,6 +3,6 @@ import { TratamientoEntity } from "src/tratamiento/tratamiento.entity";
 export declare class CuentaEntity {
     id: number;
     descripcion: string;
-    paciente: PacienteEntity[];
-    tratamiento: TratamientoEntity[];
+    paciente: PacienteEntity;
+    tratamiento: TratamientoEntity;
 }

@@ -1,4 +1,4 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsNumber, IsPositive } from "class-validator";
 import { IsNotBlank } from "src/decorators/is-not-blank.decorator";
 import { PacienteEntity } from "src/paciente/paciente.entity";
 import { TratamientoEntity } from "src/tratamiento/tratamiento.entity";
@@ -9,8 +9,12 @@ export class CuentaDto{
     descripcion?: string;
 
     @IsNotEmpty()
-    paciente?: PacienteEntity[];
+    @IsNumber()
+    @IsPositive()
+    paciente?: number;
 
     @IsNotEmpty()
-    tratamiento?: TratamientoEntity[];
+    @IsNumber()
+    @IsPositive()
+    tratamiento?: number;
 }

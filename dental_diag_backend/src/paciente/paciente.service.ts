@@ -20,8 +20,8 @@ export class PacienteService {
         return list;
     }
 
-    async findById(cedula: number): Promise<PacienteEntity> {
-        const paciente = await this.pacienteRepository.findOneBy({cedula});
+    async findById(id: number): Promise<PacienteEntity> {
+        const paciente = await this.pacienteRepository.findOneBy({id});
         if(!paciente){
             throw new NotFoundException(new MessageDto('El Paciente no Existe'))
         }
@@ -40,8 +40,8 @@ export class PacienteService {
         return new MessageDto('Paciente Agregado');
     }
 
-    async update(cedula: number, dto: PacienteDto): Promise<any>{
-        const paciente = await this.findById(cedula);
+    async update(id: number, dto: PacienteDto): Promise<any>{
+        const paciente = await this.findById(id);
         if(!paciente)
         throw new BadRequestException(new MessageDto('El Paciente no Existe'));
         dto.nombre? paciente.nombre = dto.nombre : paciente.nombre = paciente.nombre;
@@ -53,8 +53,8 @@ export class PacienteService {
         return new MessageDto ('Datos del Paciente actualizados');
     }
     
-    async delete(cedula: number): Promise<any> {
-        const paciente = await this.findById(cedula);
+    async delete(id: number): Promise<any> {
+        const paciente = await this.findById(id);
         await this.pacienteRepository.delete(paciente);
         return new MessageDto ('Paciente esta Eliminado');
     }

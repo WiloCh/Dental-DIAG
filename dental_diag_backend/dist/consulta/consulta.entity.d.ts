@@ -4,6 +4,6 @@ export declare class ConsultaEntity {
     id: number;
     fecha: Date;
     motivo: string;
-    medico: MedicoEntity[];
-    paciente: PacienteEntity[];
+    medico: MedicoEntity;
+    paciente: PacienteEntity;
 }

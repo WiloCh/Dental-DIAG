@@ -24,7 +24,7 @@ __decorate([
 ], TratamientoEntity.prototype, "nombre", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => cuenta_entity_1.CuentaEntity, (cuenta) => cuenta.tratamiento),
-    __metadata("design:type", Array)
+    __metadata("design:type", cuenta_entity_1.CuentaEntity)
 ], TratamientoEntity.prototype, "cuentas", void 0);
 TratamientoEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'tratamientos' })

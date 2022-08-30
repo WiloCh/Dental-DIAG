@@ -23,17 +23,17 @@ let MedicoController = class MedicoController {
     async getAll() {
         return await this.medicoService.getAll();
     }
-    async getOne(cedula) {
-        return await this.medicoService.findById(cedula);
+    async getOne(id) {
+        return await this.medicoService.findById(id);
     }
     async create(dto) {
         return await this.medicoService.create(dto);
     }
-    async update(cedula, dto) {
-        return await this.medicoService.update(cedula, dto);
+    async update(id, dto) {
+        return await this.medicoService.update(id, dto);
     }
-    async delete(cedula) {
-        return await this.medicoService.delete(cedula);
+    async delete(id) {
+        return await this.medicoService.delete(id);
     }
 };
 __decorate([
@@ -43,8 +43,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MedicoController.prototype, "getAll", null);
 __decorate([
-    (0, common_1.Get)(':cedula'),
-    __param(0, (0, common_1.Param)('cedula', common_1.ParseIntPipe)),
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
@@ -59,16 +59,16 @@ __decorate([
 ], MedicoController.prototype, "create", null);
 __decorate([
     (0, common_1.UsePipes)(new common_1.ValidationPipe({ whitelist: true })),
-    (0, common_1.Put)(':cedula'),
-    __param(0, (0, common_1.Param)('cedula', common_1.ParseIntPipe)),
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, medico_dto_1.MedicoDto]),
     __metadata("design:returntype", Promise)
 ], MedicoController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':cedula'),
-    __param(0, (0, common_1.Param)('cedula', common_1.ParseIntPipe)),
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)

@@ -1,10 +1,13 @@
 import { ConsultaEntity } from "src/consulta/consulta.entity";
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name: 'medicos'})
 export class MedicoEntity {
 
-    @PrimaryColumn({ type: "int", nullable: false })
+    @PrimaryGeneratedColumn()
+    id: number;
+    
+    @Column({ type: "int", nullable: false })
     cedula: number;
 
     @Column({ type: "varchar", length: 250, nullable: false })

@@ -12,9 +12,9 @@ export class PacienteController {
         return await this.pacienteService.getAll();
     }
 
-    @Get(':cedula')
-    async getOne(@Param('cedula', ParseIntPipe) cedula: number) {
-        return await this.pacienteService.findById(cedula);
+    @Get(':id')
+    async getOne(@Param('id', ParseIntPipe) id: number) {
+        return await this.pacienteService.findById(id);
     }
 
     @UsePipes(new ValidationPipe({whitelist: true}))
@@ -24,13 +24,13 @@ export class PacienteController {
     }
 
     @UsePipes(new ValidationPipe({whitelist: true}))
-    @Put(':cedula')
-    async update(@Param('cedula', ParseIntPipe) cedula: number, @Body() dto: PacienteDto) {
-        return await this.pacienteService.update(cedula, dto);
+    @Put(':id')
+    async update(@Param('id', ParseIntPipe) id: number, @Body() dto: PacienteDto) {
+        return await this.pacienteService.update(id, dto);
     }
 
-    @Delete(':cedula')
-    async delete(@Param('cedula', ParseIntPipe) cedula: number) {
-        return await this.pacienteService.delete(cedula);
+    @Delete(':id')
+    async delete(@Param('id', ParseIntPipe) id: number) {
+        return await this.pacienteService.delete(id);
     }
 }

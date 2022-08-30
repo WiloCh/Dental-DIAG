@@ -1,8 +1,5 @@
-import { IsArray, IsDate, IsNotEmpty } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsPositive } from "class-validator";
 import { IsNotBlank } from "src/decorators/is-not-blank.decorator";
-import { MedicoEntity } from "src/medico/medico.entity";
-import { PacienteEntity } from "src/paciente/paciente.entity";
-
 
 export class ConsultaDto{
 
@@ -14,8 +11,12 @@ export class ConsultaDto{
     motivo?: string;
 
     @IsNotEmpty()
-    medico?: MedicoEntity[];
+    @IsNumber()
+    @IsPositive()
+    medico?: number;
 
     @IsNotEmpty()
-    paciente?: PacienteEntity[];
+    @IsNumber()
+    @IsPositive()
+    paciente?: number;
 }

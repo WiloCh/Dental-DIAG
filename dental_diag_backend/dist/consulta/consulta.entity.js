@@ -29,13 +29,13 @@ __decorate([
 ], ConsultaEntity.prototype, "motivo", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => medico_entity_1.MedicoEntity, (medico) => medico.consultas),
-    (0, typeorm_1.JoinColumn)({ name: 'cedula_medico' }),
-    __metadata("design:type", Array)
+    (0, typeorm_1.JoinColumn)({ name: 'id_medico' }),
+    __metadata("design:type", medico_entity_1.MedicoEntity)
 ], ConsultaEntity.prototype, "medico", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => paciente_entity_1.PacienteEntity, (paciente) => paciente.consultas),
-    (0, typeorm_1.JoinColumn)({ name: 'cedula_paciente' }),
-    __metadata("design:type", Array)
+    (0, typeorm_1.JoinColumn)({ name: 'id_paciente' }),
+    __metadata("design:type", paciente_entity_1.PacienteEntity)
 ], ConsultaEntity.prototype, "paciente", void 0);
 ConsultaEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'consultas' })

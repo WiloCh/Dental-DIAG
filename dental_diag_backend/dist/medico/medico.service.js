@@ -29,8 +29,8 @@ let MedicoService = class MedicoService {
         }
         return list;
     }
-    async findById(cedula) {
-        const medico = await this.medicoRepository.findOneBy({ cedula });
+    async findById(id) {
+        const medico = await this.medicoRepository.findOneBy({ id });
         if (!medico) {
             throw new common_1.NotFoundException(new message_dto_1.MessageDto('El Medico no Existe'));
         }
@@ -41,8 +41,8 @@ let MedicoService = class MedicoService {
         await this.medicoRepository.save(medico);
         return new message_dto_1.MessageDto('Medico Agregado');
     }
-    async update(cedula, dto) {
-        const medico = await this.findById(cedula);
+    async update(id, dto) {
+        const medico = await this.findById(id);
         if (!medico)
             throw new common_1.BadRequestException(new message_dto_1.MessageDto('El Medico no existente'));
         dto.nombre ? medico.nombre = dto.nombre : medico.nombre = medico.nombre;
@@ -51,8 +51,8 @@ let MedicoService = class MedicoService {
         await this.medicoRepository.save(medico);
         return new message_dto_1.MessageDto('Datos del Medico actualizados');
     }
-    async delete(cedula) {
-        const medico = await this.findById(cedula);
+    async delete(id) {
+        const medico = await this.findById(id);
         await this.medicoRepository.delete(medico);
         return new message_dto_1.MessageDto('Medico fue Eliminado');
     }

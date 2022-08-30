@@ -16,17 +16,18 @@ exports.ConsultaService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const message_dto_1 = require("../common/message.dto");
-const medico_entity_1 = require("../medico/medico.entity");
-const medico_repository_1 = require("../medico/medico.repository");
+const medico_service_1 = require("../medico/medico.service");
+const paciente_service_1 = require("../paciente/paciente.service");
 const consulta_entity_1 = require("./consulta.entity");
 const consulta_repository_1 = require("./consulta.repository");
 let ConsultaService = class ConsultaService {
-    constructor(consultaRepository, medicoRepository) {
+    constructor(consultaRepository, medicoService, pacienteService) {
         this.consultaRepository = consultaRepository;
-        this.medicoRepository = medicoRepository;
+        this.medicoService = medicoService;
+        this.pacienteService = pacienteService;
     }
     async getAll() {
-        const list = await this.consultaRepository.find();
+        const list = await this.consultaRepository.find({ relations: ['medico', 'paciente'] });
         if (!list.length) {
             throw new common_1.NotFoundException(new message_dto_1.MessageDto('Lista de Consultas Vacia'));
         }
@@ -39,20 +40,10 @@ let ConsultaService = class ConsultaService {
         }
         return consulta;
     }
-    async findByMed_Id(cedula) {
-        const medico = await this.medicoRepository.findOneBy({ cedula });
-        if (!medico) {
-            throw new common_1.NotFoundException(new message_dto_1.MessageDto('El Medico no Existe'));
-        }
-        return medico;
-    }
-    async findByMotivo(motivo) {
-        const consulta = await this.consultaRepository.findOneBy({ motivo: motivo });
-        return consulta;
-    }
     async create(dto) {
-        const exists = await this.findByMotivo(dto.motivo);
-        const consulta = this.consultaRepository.create(dto);
+        const medico = await this.medicoService.findById(dto.medico);
+        const paciente = await this.pacienteService.findById(dto.paciente);
+        const consulta = this.consultaRepository.create(Object.assign(Object.assign({}, dto), { medico: medico, paciente: paciente }));
         await this.consultaRepository.save(consulta);
         return new message_dto_1.MessageDto('Consulta Creada');
     }
@@ -60,11 +51,8 @@ let ConsultaService = class ConsultaService {
         const consulta = await this.findById(id);
         if (!consulta)
             throw new common_1.BadRequestException(new message_dto_1.MessageDto('Consulta no Existente'));
-        dto.fecha ? consulta.fecha = dto.fecha : consulta.fecha = consulta.fecha;
-        dto.motivo ? consulta.motivo = dto.motivo : consulta.motivo = consulta.motivo;
-        dto.medico ? consulta.medico = dto.medico : consulta.medico = consulta.medico;
-        dto.paciente ? consulta.paciente = dto.paciente : consulta.paciente = consulta.paciente;
-        await this.consultaRepository.save(consulta);
+        const mergeData = this.consultaRepository.merge(consulta, Object.assign(Object.assign({}, dto), { medico: consulta.medico, paciente: consulta.paciente }));
+        await this.consultaRepository.save(mergeData);
         return new message_dto_1.MessageDto('Consulta actualizada');
     }
     async delete(id) {
@@ -76,9 +64,9 @@ let ConsultaService = class ConsultaService {
 ConsultaService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(consulta_entity_1.ConsultaEntity)),
-    __param(1, (0, typeorm_1.InjectRepository)(medico_entity_1.MedicoEntity)),
     __metadata("design:paramtypes", [consulta_repository_1.ConsultaRepository,
-        medico_repository_1.MedicoRepository])
+        medico_service_1.MedicoService,
+        paciente_service_1.PacienteService])
 ], ConsultaService);
 exports.ConsultaService = ConsultaService;
 //# sourceMappingURL=consulta.service.js.map

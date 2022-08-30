@@ -18,7 +18,8 @@ TratamientoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([tratamiento_entity_1.TratamientoEntity])],
         providers: [tratamiento_service_1.TratamientoService],
-        controllers: [tratamiento_controller_1.TratamientoController]
+        controllers: [tratamiento_controller_1.TratamientoController],
+        exports: [tratamiento_service_1.TratamientoService]
     })
 ], TratamientoModule);
 exports.TratamientoModule = TratamientoModule;

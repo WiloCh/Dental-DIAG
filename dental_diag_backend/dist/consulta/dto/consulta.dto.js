@@ -25,11 +25,15 @@ __decorate([
 ], ConsultaDto.prototype, "motivo", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Array)
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsPositive)(),
+    __metadata("design:type", Number)
 ], ConsultaDto.prototype, "medico", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Array)
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsPositive)(),
+    __metadata("design:type", Number)
 ], ConsultaDto.prototype, "paciente", void 0);
 exports.ConsultaDto = ConsultaDto;
 //# sourceMappingURL=consulta.dto.js.map

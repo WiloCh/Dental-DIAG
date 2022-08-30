@@ -1,10 +1,14 @@
 import { ConsultaEntity } from "src/consulta/consulta.entity";
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { CuentaEntity } from "src/cuenta/cuenta.entity";
+import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name: 'pacientes'})
 export class PacienteEntity {
     
-    @PrimaryColumn({ type: "int", nullable: false })
+    @PrimaryGeneratedColumn()
+    id: number;
+    
+    @Column({ type: "int", nullable: false })
     cedula: number;
 
     @Column({ type: "varchar", length: 250, nullable: false })
@@ -25,7 +29,7 @@ export class PacienteEntity {
     @OneToMany(() => ConsultaEntity, (consulta) => consulta.paciente)
     consultas: ConsultaEntity[];
 
-    @OneToMany(() => ConsultaEntity, (cuenta) => cuenta.paciente)
-    cuentas: ConsultaEntity[];
+    @OneToMany(() => CuentaEntity, (cuenta) => cuenta.paciente)
+    cuentas: CuentaEntity;
 
 }

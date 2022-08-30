@@ -18,7 +18,8 @@ PacienteModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([paciente_entity_1.PacienteEntity])],
         providers: [paciente_service_1.PacienteService],
-        controllers: [paciente_controller_1.PacienteController]
+        controllers: [paciente_controller_1.PacienteController],
+        exports: [paciente_service_1.PacienteService]
     })
 ], PacienteModule);
 exports.PacienteModule = PacienteModule;

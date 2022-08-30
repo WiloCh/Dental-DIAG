@@ -16,14 +16,18 @@ exports.CuentaService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const message_dto_1 = require("../common/message.dto");
+const paciente_service_1 = require("../paciente/paciente.service");
+const tratamiento_service_1 = require("../tratamiento/tratamiento.service");
 const cuenta_entity_1 = require("./cuenta.entity");
 const cuenta_repository_1 = require("./cuenta.repository");
 let CuentaService = class CuentaService {
-    constructor(cuentaRepository) {
+    constructor(cuentaRepository, pacienteService, tratamientoService) {
         this.cuentaRepository = cuentaRepository;
+        this.pacienteService = pacienteService;
+        this.tratamientoService = tratamientoService;
     }
     async getAll() {
-        const list = await this.cuentaRepository.find();
+        const list = await this.cuentaRepository.find({ relations: ['tratamiento', 'paciente'] });
         if (!list.length) {
             throw new common_1.NotFoundException(new message_dto_1.MessageDto('Lista de Cuentas Vacia'));
         }
@@ -36,20 +40,22 @@ let CuentaService = class CuentaService {
         }
         return cuenta;
     }
-    async findByDescripcion(descripcion) {
-        const cuenta = await this.cuentaRepository.findOneBy({ descripcion: descripcion });
-        return cuenta;
-    }
     async create(dto) {
-        const cuenta = this.cuentaRepository.create(dto);
+        const paciente = await this.pacienteService.findById(dto.paciente);
+        const tratamiento = await this.tratamientoService.findById(dto.tratamiento);
+        const cuenta = this.cuentaRepository.create(Object.assign(Object.assign({}, dto), { paciente: paciente, tratamiento: tratamiento }));
         await this.cuentaRepository.save(cuenta);
         return new message_dto_1.MessageDto('Cuenta Creada');
     }
     async update(id, dto) {
+        const paciente = await this.pacienteService.findById(dto.paciente);
+        const tratamiento = await this.tratamientoService.findById(dto.tratamiento);
         const cuenta = await this.findById(id);
         if (!cuenta)
             throw new common_1.BadRequestException(new message_dto_1.MessageDto('Cuenta no Existente'));
         dto.descripcion ? cuenta.descripcion = dto.descripcion : cuenta.descripcion = cuenta.descripcion;
+        dto.paciente ? paciente.id = dto.paciente : paciente.id = paciente.id;
+        dto.tratamiento ? tratamiento.id = dto.tratamiento : tratamiento.id = tratamiento.id;
         await this.cuentaRepository.save(cuenta);
         return new message_dto_1.MessageDto('Cuenta actualizada');
     }
@@ -62,7 +68,9 @@ let CuentaService = class CuentaService {
 CuentaService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(cuenta_entity_1.CuentaEntity)),
-    __metadata("design:paramtypes", [cuenta_repository_1.CuentaRepository])
+    __metadata("design:paramtypes", [cuenta_repository_1.CuentaRepository,
+        paciente_service_1.PacienteService,
+        tratamiento_service_1.TratamientoService])
 ], CuentaService);
 exports.CuentaService = CuentaService;
 //# sourceMappingURL=cuenta.service.js.map

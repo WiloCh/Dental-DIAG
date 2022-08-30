@@ -25,7 +25,7 @@ __decorate([
 ], PacienteDto.prototype, "nombre", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'El campo Edad esta vacio' }),
     (0, class_validator_1.Min)(1),
     (0, class_validator_1.Max)(110),
     __metadata("design:type", Number)

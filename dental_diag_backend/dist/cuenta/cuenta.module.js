@@ -12,11 +12,13 @@ const cuenta_service_1 = require("./cuenta.service");
 const cuenta_controller_1 = require("./cuenta.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const cuenta_entity_1 = require("./cuenta.entity");
+const paciente_module_1 = require("../paciente/paciente.module");
+const tratamiento_module_1 = require("../tratamiento/tratamiento.module");
 let CuentaModule = class CuentaModule {
 };
 CuentaModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([cuenta_entity_1.CuentaEntity])],
+        imports: [paciente_module_1.PacienteModule, tratamiento_module_1.TratamientoModule, typeorm_1.TypeOrmModule.forFeature([cuenta_entity_1.CuentaEntity])],
         providers: [cuenta_service_1.CuentaService],
         controllers: [cuenta_controller_1.CuentaController]
     })

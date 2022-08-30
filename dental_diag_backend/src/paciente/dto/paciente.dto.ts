@@ -11,7 +11,7 @@ export class PacienteDto {
     nombre?: string;
 
     @IsNumber()
-    @IsNotEmpty()
+    @IsNotEmpty({message: 'El campo Edad esta vacio'})
     @Min(1)
     @Max(110)
     edad?: number;

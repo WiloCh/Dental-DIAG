@@ -20,11 +20,15 @@ __decorate([
 ], CuentaDto.prototype, "descripcion", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Array)
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsPositive)(),
+    __metadata("design:type", Number)
 ], CuentaDto.prototype, "paciente", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Array)
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsPositive)(),
+    __metadata("design:type", Number)
 ], CuentaDto.prototype, "tratamiento", void 0);
 exports.CuentaDto = CuentaDto;
 //# sourceMappingURL=cuenta.dto.js.map
