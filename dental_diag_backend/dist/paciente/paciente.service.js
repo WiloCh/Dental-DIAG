@@ -30,18 +30,13 @@ let PacienteService = class PacienteService {
         return list;
     }
     async findById(id) {
-        const paciente = await this.pacienteRepository.findOneBy({ id });
+        const paciente = await this.pacienteRepository.findOne({ id });
         if (!paciente) {
             throw new common_1.NotFoundException(new message_dto_1.MessageDto('El Paciente no Existe'));
         }
         return paciente;
     }
-    async findByNombre(nombre) {
-        const paciente = await this.pacienteRepository.findOneBy({ nombre: nombre });
-        return paciente;
-    }
     async create(dto) {
-        const exists = await this.findByNombre(dto.nombre);
         const paciente = this.pacienteRepository.create(dto);
         await this.pacienteRepository.save(paciente);
         return new message_dto_1.MessageDto('Paciente Agregado');

@@ -26,7 +26,7 @@ export class ConsultaService {
     }
 
     async findById(id: number): Promise<ConsultaEntity> {
-        const consulta = await this.consultaRepository.findOneBy({ id });
+        const consulta = await this.consultaRepository.findOne(id);
         if (!consulta) {
             throw new NotFoundException(new MessageDto('La consulta no Existe'))
         }

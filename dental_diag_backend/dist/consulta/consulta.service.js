@@ -34,7 +34,7 @@ let ConsultaService = class ConsultaService {
         return list;
     }
     async findById(id) {
-        const consulta = await this.consultaRepository.findOneBy({ id });
+        const consulta = await this.consultaRepository.findOne(id);
         if (!consulta) {
             throw new common_1.NotFoundException(new message_dto_1.MessageDto('La consulta no Existe'));
         }

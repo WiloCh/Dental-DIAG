@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationOptions} from 'class-validator';
+import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
 
 export function IsNotBlank(validationOptions?: ValidationOptions) {
     return function (object: Object, propertyName: string) {
@@ -9,9 +9,9 @@ export function IsNotBlank(validationOptions?: ValidationOptions) {
             options: validationOptions,
             validator: {
                 validate(value: any) {
-                    if (typeof value !== 'string') return false;
+                    if(typeof value !== 'string') return false;
                     const valueTRim = value.replace(/ /g, '');
-                    if (valueTRim === '') return false;
+                    if(valueTRim === '') return false;
                     return true;
                 },
             },

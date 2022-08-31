@@ -30,14 +30,14 @@ let TratamientoService = class TratamientoService {
         return list;
     }
     async findById(id) {
-        const tratamiento = await this.tratamientoRepository.findOneBy({ id });
+        const tratamiento = await this.tratamientoRepository.findOne({ id });
         if (!tratamiento) {
             throw new common_1.NotFoundException(new message_dto_1.MessageDto('Tratamientos no Existente'));
         }
         return tratamiento;
     }
     async findByNombre(nombre) {
-        const tratamiento = await this.tratamientoRepository.findOneBy({ nombre: nombre });
+        const tratamiento = await this.tratamientoRepository.findOne({ nombre: nombre });
         return tratamiento;
     }
     async create(dto) {

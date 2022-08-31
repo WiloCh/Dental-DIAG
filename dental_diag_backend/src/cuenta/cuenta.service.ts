@@ -26,7 +26,7 @@ export class CuentaService {
     }
 
     async findById(id: number): Promise<CuentaEntity> {
-        const cuenta = await this.cuentaRepository.findOneBy({id});
+        const cuenta = await this.cuentaRepository.findOne({id});
         if(!cuenta){
             throw new NotFoundException(new MessageDto('La cuenta no Existe'))
         }

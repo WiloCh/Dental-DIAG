@@ -21,20 +21,15 @@ export class PacienteService {
     }
 
     async findById(id: number): Promise<PacienteEntity> {
-        const paciente = await this.pacienteRepository.findOneBy({id});
+        const paciente = await this.pacienteRepository.findOne({id});
         if(!paciente){
             throw new NotFoundException(new MessageDto('El Paciente no Existe'))
         }
         return paciente;
     }
 
-    async findByNombre(nombre: string): Promise<PacienteEntity> {
-        const paciente = await this.pacienteRepository.findOneBy({nombre: nombre});
-        return paciente;
-    }
 
     async create(dto: PacienteDto): Promise<any> {
-        const exists = await this.findByNombre(dto.nombre);
         const paciente = this.pacienteRepository.create(dto);
         await this.pacienteRepository.save(paciente);
         return new MessageDto('Paciente Agregado');

@@ -30,7 +30,7 @@ let MedicoService = class MedicoService {
         return list;
     }
     async findById(id) {
-        const medico = await this.medicoRepository.findOneBy({ id });
+        const medico = await this.medicoRepository.findOne({ id });
         if (!medico) {
             throw new common_1.NotFoundException(new message_dto_1.MessageDto('El Medico no Existe'));
         }

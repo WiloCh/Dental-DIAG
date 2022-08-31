@@ -34,7 +34,7 @@ let CuentaService = class CuentaService {
         return list;
     }
     async findById(id) {
-        const cuenta = await this.cuentaRepository.findOneBy({ id });
+        const cuenta = await this.cuentaRepository.findOne({ id });
         if (!cuenta) {
             throw new common_1.NotFoundException(new message_dto_1.MessageDto('La cuenta no Existe'));
         }

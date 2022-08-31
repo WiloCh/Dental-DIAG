@@ -8,7 +8,7 @@ import { MedicoModule } from 'src/medico/medico.module';
 import { PacienteModule } from 'src/paciente/paciente.module';
 
 @Module({
-  imports: [MedicoModule, PacienteModule,TypeOrmModule.forFeature([ConsultaEntity, MedicoEntity])],
+  imports: [MedicoModule, PacienteModule,TypeOrmModule.forFeature([ConsultaEntity])],
   providers: [ConsultaService],
   controllers: [ConsultaController]
 })

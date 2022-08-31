@@ -21,7 +21,7 @@ export class TratamientoService {
         }
 
         async findById(id: number): Promise<TratamientoEntity> {
-            const tratamiento = await this.tratamientoRepository.findOneBy({id});
+            const tratamiento = await this.tratamientoRepository.findOne({id});
             if(!tratamiento){
                 throw new NotFoundException(new MessageDto('Tratamientos no Existente'))
             }
@@ -29,7 +29,7 @@ export class TratamientoService {
         }
     
         async findByNombre(nombre: string): Promise<TratamientoEntity> {
-            const tratamiento = await this.tratamientoRepository.findOneBy({nombre: nombre});
+            const tratamiento = await this.tratamientoRepository.findOne({nombre: nombre});
             return tratamiento;
         }
     

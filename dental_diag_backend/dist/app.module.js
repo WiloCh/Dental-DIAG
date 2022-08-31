@@ -13,11 +13,15 @@ const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const constants_1 = require("./config/constants");
+const producto_module_1 = require("./producto/producto.module");
+const usuario_module_1 = require("./usuario/usuario.module");
+const rol_module_1 = require("./rol/rol.module");
+const auth_module_1 = require("./auth/auth.module");
 const medico_module_1 = require("./medico/medico.module");
 const paciente_module_1 = require("./paciente/paciente.module");
-const consulta_module_1 = require("./consulta/consulta.module");
 const tratamiento_module_1 = require("./tratamiento/tratamiento.module");
 const cuenta_module_1 = require("./cuenta/cuenta.module");
+const consulta_module_1 = require("./consulta/consulta.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -38,15 +42,20 @@ AppModule = __decorate([
                     database: configService.get(constants_1.DB_DATABASE),
                     entities: [__dirname + '/**/*.entity{.ts,.js}'],
                     synchronize: true,
+                    logging: false,
                     autoLoadEntities: true,
                 }),
                 inject: [config_1.ConfigService],
             }),
+            producto_module_1.ProductoModule,
+            usuario_module_1.UsuarioModule,
+            rol_module_1.RolModule,
+            auth_module_1.AuthModule,
             medico_module_1.MedicoModule,
             paciente_module_1.PacienteModule,
-            consulta_module_1.ConsultaModule,
             tratamiento_module_1.TratamientoModule,
-            cuenta_module_1.CuentaModule
+            cuenta_module_1.CuentaModule,
+            consulta_module_1.ConsultaModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -21,7 +21,7 @@ export class MedicoService {
     }
 
     async findById(id: number): Promise<MedicoEntity> {
-        const medico = await this.medicoRepository.findOneBy({id});
+        const medico = await this.medicoRepository.findOne({id});
         if(!medico){
             throw new NotFoundException(new MessageDto('El Medico no Existe'))
         }
